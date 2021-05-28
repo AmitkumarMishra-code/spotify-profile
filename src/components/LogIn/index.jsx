@@ -6,10 +6,17 @@ import "./index.css";
 export default function LogIn() {
 
   const scopes = ["playlist-read-private", "user-follow-read", "user-read-private", "user-top-read"];
+
+  let redirect = "http:%2F%2Flocalhost:3000%2fmain";
+
+  if(window.location.href === "https://spotify-starter.netlify.app/"){
+    redirect ="https:%2F%2Fspotify-starter.netlify.app%2fmain"
+  }
+
   return (
     <div className="root">
       <a
-        href={`https://accounts.spotify.com/authorize?client_id=59c69e76659b4a2498c9adc16b2aa81d&scope=${scopes.join("%20")}&redirect_uri=http:%2F%2Flocalhost:3000%2fmain&response_type=token`}
+        href={`https://accounts.spotify.com/authorize?client_id=59c69e76659b4a2498c9adc16b2aa81d&scope=${scopes.join("%20")}&redirect_uri=${redirect}&response_type=token`}
         target="_blank"
         rel="noreferrer"
       >

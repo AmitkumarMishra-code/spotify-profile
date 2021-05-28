@@ -17,12 +17,6 @@ export default function Content() {
         default:
     }
 
-    useEffect(() => {
-        
-        // return () => {
-        //     cleanup
-        // }
-    }, [])
     return (
         <div className="content">
             {componentToRender}

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_TOKEN, REFRESH_TOKEN, SET_ARTISTS, SET_TOKEN, SET_USER } from "./actions";
+import { REFRESH_TOKEN, SET_TOKEN, SET_USER } from "./actions";
 
 let urlParams = window.location.href;
 urlParams = urlParams.replace("#", "?&");
@@ -77,7 +77,7 @@ async function requestData(url) {
         console.log("inside error")
         console.log(err)
         console.log(err.response.status)
-        if (err.response.status == 403) {
+        if (err.response.status === 403) {
             try {
                 let response = await axios.post('https://accounts.spotify.com/api/token', {
                     headers: {

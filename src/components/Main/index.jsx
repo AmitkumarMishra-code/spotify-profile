@@ -12,7 +12,7 @@ export default function Main() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(setToken())
-    },[])
+    },[dispatch])
 
     return (
         <div className="main">

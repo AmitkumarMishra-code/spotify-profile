@@ -8,7 +8,7 @@ export default function Profile() {
 
   useEffect(() => {
     dispatch(getUserProfile());
-  }, []);
+  }, [dispatch]);
 
   if (!user) {
     return <></>;

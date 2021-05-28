@@ -1,0 +1,37 @@
+.main {
+    display: flex;
+    height: 100vh;
+}
+
+.side-bar {
+    background: black;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+    justify-content: space-between;
+}
+
+.side-bar img {
+    width: 25px;
+}
+
+.content {
+    flex: 1;
+    background: rgb(36, 35, 35);
+}
+
+.side-bar .navigation-links {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}

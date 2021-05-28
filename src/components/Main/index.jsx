@@ -6,8 +6,6 @@ import "./styles.css"
 
 
 export default function Main() {
-
-
     return (
         <div className="main">
             <SideBar/>

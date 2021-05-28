@@ -35,3 +35,10 @@
     align-items: center;
     cursor: pointer;
 }
+
+.side-bar .logo,
+.side-bar .git {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux';
-import { setToken } from '../../redux/actions/action_types';
+import React from 'react'
 import Content from './Content'
 import SideBar from './SideBar'
 
@@ -9,10 +7,6 @@ import "./styles.css"
 
 export default function Main() {
 
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(setToken())
-    },[dispatch])
 
     return (
         <div className="main">

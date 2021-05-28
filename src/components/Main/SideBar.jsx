@@ -26,12 +26,12 @@ export default function SideBar() {
 
         <div className="nav-link">
           <img src="./images/history.svg" alt="recent" />
-          <p>recent</p>
+          <p>Recent</p>
         </div>
 
         <div className="nav-link">
           <img src="./images/musical-note.svg" alt="tracks" />
-          <p>playlists</p>
+          <p>Playlists</p>
         </div>
 
       </div>

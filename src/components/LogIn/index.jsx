@@ -16,7 +16,7 @@ export default function LogIn() {
   return (
     <div className="root">
       <a
-        href={`https://accounts.spotify.com/authorize?client_id=59c69e76659b4a2498c9adc16b2aa81d&scope=${scopes.join("%20")}&redirect_uri=${redirect}&response_type=token`} 
+        href={`https://accounts.spotify.com/authorize?client_id=59c69e76659b4a2498c9adc16b2aa81d&scope=${scopes.join("%20")}&redirect_uri=${redirect}&response_type=code`} 
       >
         <Button content="Sign in" color="white" background="green"/>
       </a>

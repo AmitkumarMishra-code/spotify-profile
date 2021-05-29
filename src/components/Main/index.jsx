@@ -1,15 +1,20 @@
-import React from 'react'
-import Content from './Content'
-import SideBar from './SideBar'
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getToken } from "../../redux/actions/action_types";
+import Content from "./Content";
+import SideBar from "./SideBar";
 
-import "./styles.css"
-
+import "./styles.css";
 
 export default function Main() {
-    return (
-        <div className="main">
-            <SideBar/>
-            <Content/>
-        </div>
-    )
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // dispatch(getToken());
+  }, []);
+  return (
+    <div className="main">
+      <SideBar />
+      <Content />
+    </div>
+  );
 }

@@ -27,11 +27,6 @@ export function getToken() {
 
     data = querystring.stringify(data);
 
-    let headers = {
-      Authorization:
-        "Basic NTljNjllNzY2NTliNGEyNDk4YzlhZGMxNmIyYWE4MWQ6ZmI4OWM4YjIwZTRhNDhjMDgxZTAyMDhmZmFmNWZhZTk=",
-    };
-
     let res = await axios({
       method: "post",
       url: "https://accounts.spotify.com/api/token",
@@ -117,7 +112,7 @@ async function requestData(url) {
           }
         );
         console.log(response);
-        // token = response.access_token;
+        token = response.access_token;
         requestData(url);
       } catch (error) {
         console.log(error.message);
@@ -146,3 +141,5 @@ export let makeAPICall = () => {
     }
   };
 };
+
+console.log(requestData("me/top/artists"));

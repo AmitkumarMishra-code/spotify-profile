@@ -39,7 +39,7 @@ export default function Track({ image, trackName, albumName, runtime, artists, p
             </div>
             <div className="track-runtime">
                 <p>{getTime()}</p>
-                {preview!==null ? <div className='preview' onClick={audioHandler}>{!playing ? <Play/> : <Pause/>}</div> : <div><NoPreview/></div>}
+                {preview!==null ? <div className='preview' onClick={audioHandler}>{!playing ? <Play/> : <Pause/>}</div> : <div className = 'preview'><NoPreview/></div>}
             </div>
         </div>
     )

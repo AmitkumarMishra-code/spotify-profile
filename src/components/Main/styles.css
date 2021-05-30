@@ -147,10 +147,8 @@
     width: 15px;
 }
 
-a {
+.preview:hover {
     cursor: pointer;
-    text-decoration: none;
-    color: yellow;
 }
 
 .dot {

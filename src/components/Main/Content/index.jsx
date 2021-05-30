@@ -4,6 +4,7 @@ import Profile from './Profile';
 
 import "./contentStyles.css"
 import TopTracks from './TopTracks';
+import RecentlyPlayed from './RecentlyPlayed';
 
 export default function Content() {
 
@@ -18,6 +19,8 @@ export default function Content() {
         case 'tracks':
             componentToRender = <TopTracks />
             break;
+        case 'recent':
+            componentToRender = <RecentlyPlayed />
         default:
     }
 

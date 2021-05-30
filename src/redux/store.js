@@ -5,8 +5,9 @@ import artistsReducer from "./reducers/artistsReducer";
 import navigationReducer from "./reducers/navigationReducer";
 import userReducer from "./reducers/userReducer";
 import tracksReducer from "./reducers/tracksReducer";
+import recentlyPlayedReducer from "./reducers/recentlyPlayedreducer";
 
 //artistsReducer
 
-const rootReducer = combineReducers({ token: tokenReducer, artists: artistsReducer, navigation: navigationReducer, user: userReducer, tracks: tracksReducer })
+const rootReducer = combineReducers({ token: tokenReducer, artists: artistsReducer, navigation: navigationReducer, user: userReducer, tracks: tracksReducer, recentlyPlayed: recentlyPlayedReducer })
 export const store = createStore(rootReducer, applyMiddleware(thunk));

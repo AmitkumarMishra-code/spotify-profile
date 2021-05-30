@@ -1,5 +1,5 @@
 import axios from "axios";
-import { REFRESH_TOKEN, SET_NAVIGATION, SET_TOKEN, SET_TRACKS_FILTER, SET_TRACKS_LONG_TERM, SET_TRACKS_MEDIUM_TERM, SET_TRACKS_SHORT_TERM, SET_USER } from "./actions";
+import { REFRESH_TOKEN, SET_NAVIGATION, SET_RECENTLY_PLAYED, SET_TOKEN, SET_TRACKS_FILTER, SET_TRACKS_LONG_TERM, SET_TRACKS_MEDIUM_TERM, SET_TRACKS_SHORT_TERM, SET_USER } from "./actions";
 
 const querystring = require("querystring");
 
@@ -179,3 +179,21 @@ export let makeAPICall = () => {
         }
     };
 };
+
+//recently-played
+
+export let getRecentlyPlayed = () => {
+    return async function(dispatch, getState) {
+        let response = await requestData("me/player/recently-played");
+        console.log(response.items)
+        let tracksArray = response.items.map(track => getTrackInfo(track.track))
+        while (response.next) {
+            let index = response.next.indexOf('/me')
+            let endpoint = response.next.substring(index + 1)
+            response = await requestData(endpoint)
+            let tempArray = response.items.map(track => getTrackInfo(track.track))
+            tracksArray.push(...tempArray)
+        }
+        dispatch({ type: SET_RECENTLY_PLAYED, payload: tracksArray })
+    }
+}

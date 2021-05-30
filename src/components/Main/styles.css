@@ -159,3 +159,22 @@ a {
     width: 2px;
     height: 2px;
 }
+
+
+/* recently Played */
+
+.recently-played {
+    padding: 2em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    gap: 3em;
+    width: 70%;
+}
+
+.recently-played h2 {
+    width: 100%;
+    text-align: left;
+    color: white;
+}

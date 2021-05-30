@@ -1,5 +1,5 @@
 import axios from "axios";
-import { REFRESH_TOKEN, SET_TOKEN, SET_USER } from "./actions";
+import { REFRESH_TOKEN, SET_NAVIGATION, SET_TOKEN, SET_USER } from "./actions";
 
 const querystring = require("querystring");
 
@@ -12,9 +12,10 @@ export const setToken = () => {
   let url = window.location.href;
   url = url.replace("#", "?&");
   const params = new URLSearchParams(url);
-  const token = params.get("code");
+  const token = params.get("access_token");
   return { type: SET_TOKEN, payload: token };
 };
+
 
 export function getToken() {
   return async (dispatch) => {
@@ -41,6 +42,7 @@ export function getToken() {
   };
 }
 
+
 export let setUser = (user) => ({
   type: SET_USER,
   payload: user,
@@ -65,6 +67,9 @@ export let getArtists = () => {
     // })
   };
 };
+
+export const setNavigation = (nav) => ({ type: SET_NAVIGATION, payload: nav });
+
 
 export function getUserProfile(token) {
   return async (dispatch) => {
@@ -141,5 +146,3 @@ export let makeAPICall = () => {
     }
   };
 };
-
-console.log(requestData("me/top/artists"));

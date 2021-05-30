@@ -1,5 +1,5 @@
 import axios from "axios";
-import { REFRESH_TOKEN, SET_TOKEN, SET_TRACKS_FILTER, SET_TRACKS_LONG_TERM, SET_TRACKS_MEDIUM_TERM, SET_TRACKS_SHORT_TERM, SET_USER } from "./actions";
+import { REFRESH_TOKEN, SET_NAVIGATION, SET_TOKEN, SET_TRACKS_FILTER, SET_TRACKS_LONG_TERM, SET_TRACKS_MEDIUM_TERM, SET_TRACKS_SHORT_TERM, SET_USER } from "./actions";
 
 const querystring = require("querystring");
 
@@ -95,6 +95,7 @@ async function getTracksData(timeRange) {
 
     // return tracksArray;
 }
+export const setNavigation = (nav) => ({ type: SET_NAVIGATION, payload: nav });
 
 export function getUserProfile(token) {
     return async(dispatch) => {

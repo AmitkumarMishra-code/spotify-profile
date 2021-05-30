@@ -7,12 +7,19 @@
     background: black;
     display: flex;
     flex-direction: column;
-    padding: 1rem 2rem;
+    width: 6rem;
+    padding: 1rem 0;
     justify-content: space-between;
 }
 
-.side-bar img {
+
+/* .side-bar img {
+  width: 25px;
+} */
+
+.side-bar .navigation-links svg {
     width: 25px;
+    height: 25px;
 }
 
 .content {
@@ -23,9 +30,8 @@
 .side-bar .navigation-links {
     display: flex;
     flex-direction: column;
-    gap: 30px;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
 }
 
 .nav-link {
@@ -49,4 +55,17 @@
 
 .git img {
     width: 30px;
+}
+
+.active {
+    background: rgba(255, 255, 255, 0.192);
+    border-left: 5px solid rgb(61, 202, 61);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.wrapper {
+    padding: 1rem;
+    display: grid;
+    place-items: center;
 }

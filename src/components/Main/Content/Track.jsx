@@ -1,4 +1,11 @@
 export default function Track({ image, trackName, albumName, runtime, artists, preview }) {
+    let getTime =()=>{
+        let seconds = Math.floor(runtime/1000)
+        let minutes = Math.floor(seconds/60)
+        seconds = seconds%60
+        return `${minutes}:${seconds<10 ? '0'+seconds:seconds}`
+    }
+    
     return (
         <div className="track">
             <div className="basic">
@@ -13,7 +20,7 @@ export default function Track({ image, trackName, albumName, runtime, artists, p
                 </div>
             </div>
             <div className="track-runtime">
-                <p>{Math.floor(runtime/60000)}:{(runtime%60000).toString().substring(0,2)}</p>
+                <p>{getTime()}</p>
                 <a href={preview}><p>Preview</p></a>
             </div>
         </div>

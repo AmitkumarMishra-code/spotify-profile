@@ -83,16 +83,17 @@ export let getTopTracks = (filter) => {
 
 async function getTracksData(timeRange) {
     let res = await requestData("me/top/tracks?time_range=" + timeRange);
+    console.log(res)
 
-    let tracksArray = [];
+    // let tracksArray = [];
 
-    for (let i = 0; i < res.items.length; i++) {
-        let id = res.items[i].id;
-        const artist = await requestData("tracks/" + id);
-        tracksArray.push(artist);
-    }
+    // for (let i = 0; i < res.items.length; i++) {
+    //     let id = res.items[i].id;
+    //     const tracks = await requestData("tracks/" + id);
+    //     tracksArray.push(tracks);
+    // }
 
-    return tracksArray;
+    // return tracksArray;
 }
 
 export function getUserProfile(token) {

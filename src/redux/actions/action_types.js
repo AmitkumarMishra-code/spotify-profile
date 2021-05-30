@@ -1,6 +1,8 @@
 import axios from "axios";
 import { REFRESH_TOKEN, SET_NAVIGATION, SET_TOKEN, SET_USER } from "./actions";
 
+const querystring = require("querystring");
+
 let urlParams = window.location.href;
 urlParams = urlParams.replace("#", "?&");
 const params = new URLSearchParams(urlParams);
@@ -13,6 +15,33 @@ export const setToken = () => {
   const token = params.get("access_token");
   return { type: SET_TOKEN, payload: token };
 };
+
+
+export function getToken() {
+  return async (dispatch) => {
+    let code = params.get("code");
+    let data = {
+      grant_type: "authorization_code",
+      code: code,
+      redirect_uri: "http://localhost:3000/main",
+    };
+
+    data = querystring.stringify(data);
+
+    let res = await axios({
+      method: "post",
+      url: "https://accounts.spotify.com/api/token",
+      data: data,
+      headers: {
+        Authorization:
+          "Basic NTljNjllNzY2NTliNGEyNDk4YzlhZGMxNmIyYWE4MWQ6ZmI4OWM4YjIwZTRhNDhjMDgxZTAyMDhmZmFmNWZhZTk=",
+      },
+    });
+
+    console.log(res.data, "response");
+  };
+}
+
 
 export let setUser = (user) => ({
   type: SET_USER,
@@ -40,6 +69,7 @@ export let getArtists = () => {
 };
 
 export const setNavigation = (nav) => ({ type: SET_NAVIGATION, payload: nav });
+
 
 export function getUserProfile(token) {
   return async (dispatch) => {

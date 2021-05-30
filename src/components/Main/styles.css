@@ -136,10 +136,15 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 5px;
 }
 
 .track-runtime p {
     font-size: 12px;
+}
+
+.track-runtime svg {
+    width: 15px;
 }
 
 a {

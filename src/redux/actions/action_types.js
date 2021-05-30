@@ -140,7 +140,7 @@ async function requestData(url) {
         console.log("inside error");
         console.log(err);
         console.log(err.response.status);
-        if (err.response.status === 403) {
+        if (err.response.status === 403 || err.response === 401) {
             try {
                 let response = await axios.post(
                     "https://accounts.spotify.com/api/token", {

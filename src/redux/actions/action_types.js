@@ -1,5 +1,11 @@
 import axios from "axios";
-import { REFRESH_TOKEN, SET_NAVIGATION, SET_TOKEN, SET_USER } from "./actions";
+import {
+  REFRESH_TOKEN,
+  SET_NAVIGATION,
+  SET_TOKEN,
+  SET_TOP_ARTISTS,
+  SET_USER,
+} from "./actions";
 
 const querystring = require("querystring");
 
@@ -15,7 +21,6 @@ export const setToken = () => {
   const token = params.get("access_token");
   return { type: SET_TOKEN, payload: token };
 };
-
 
 export function getToken() {
   return async (dispatch) => {
@@ -42,7 +47,6 @@ export function getToken() {
   };
 }
 
-
 export let setUser = (user) => ({
   type: SET_USER,
   payload: user,
@@ -52,24 +56,28 @@ export let refreshToken = () => ({
   type: REFRESH_TOKEN,
 });
 
-export let getArtists = () => {
+export let getTopArtists = () => {
   return async function (dispatch, getState) {
-    // try {
-    //     let response = await axios.get('https://api.spotify.com/v1/me/top/artists', headers);
-    //     dispatch({
-    //         type: SET_ARTISTS,
-    //         payload: response.data
-    //     })
-    // let artists = await requestData("me/top/artists")
-    // dispatch({
-    //     type: SET_ARTISTS,
-    //     payload: artists
-    // })
+    let artistsArray = await getArtistData("long_term");
+    dispatch({ type: SET_TOP_ARTISTS, payload: { artistsArray } });
   };
 };
 
-export const setNavigation = (nav) => ({ type: SET_NAVIGATION, payload: nav });
+async function getArtistData(timeRange) {
+  let res = await requestData("me/top/artists?time_range=" + timeRange);
 
+  let artistsArray = [];
+
+  for (let i = 0; i < res.items.length; i++) {
+    let id = res.items[i].id;
+    const artist = await requestData("artists/" + id);
+    artistsArray.push(artist);
+  }
+
+  return artistsArray;
+}
+
+export const setNavigation = (nav) => ({ type: SET_NAVIGATION, payload: nav });
 
 export function getUserProfile(token) {
   return async (dispatch) => {
@@ -96,7 +104,6 @@ async function requestData(url) {
   let response = null;
   try {
     response = await axios.get(`https://api.spotify.com/v1/${url}`, headers);
-    console.log(response.status);
     return response.data;
   } catch (err) {
     console.log(url);

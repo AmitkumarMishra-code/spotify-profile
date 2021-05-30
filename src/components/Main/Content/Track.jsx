@@ -7,7 +7,7 @@ export default function Track({ image, trackName, albumName, runtime, artists, p
                     <p>{trackName}</p>
                     <div className="album-info">
                         <p>{artists.join(', ')}</p>
-                        <p>.</p>
+                        <div className="dot"></div>
                         <p>{albumName}</p>
                     </div>
                 </div>

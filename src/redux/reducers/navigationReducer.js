@@ -1,5 +1,10 @@
+import { SET_NAVIGATION } from "../actions/actions";
+
 export default function navigationReducer(state = "profile", action) {
     switch (action.type) {
-        default: return state
+        case SET_NAVIGATION:
+            return action.payload;
+        default:
+            return state;
     }
 }

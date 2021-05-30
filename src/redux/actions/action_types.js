@@ -82,19 +82,32 @@ export let getTopTracks = (filter) => {
 };
 
 async function getTracksData(timeRange) {
-    let res = await requestData("me/top/tracks?time_range=" + timeRange);
-    console.log(res)
-
-    // let tracksArray = [];
-
-    // for (let i = 0; i < res.items.length; i++) {
-    //     let id = res.items[i].id;
-    //     const tracks = await requestData("tracks/" + id);
-    //     tracksArray.push(tracks);
-    // }
-
-    // return tracksArray;
+    let response = await requestData("me/top/tracks?time_range=" + timeRange);
+    console.log(response)
+    let tracksArray = response.items.map(track => getTrackInfo(track))
+    while (response.next) {
+        let index = response.next.indexOf('/me')
+        let endpoint = response.next.substring(index + 1)
+        response = await requestData(endpoint)
+        let tempArray = response.items.map(track => getTrackInfo(track))
+        tracksArray.concat(tempArray)
+    }
+    return tracksArray
 }
+
+function getTrackInfo(track) {
+    let info = {
+        albumName: track.album.name,
+        albumImage: track.album.images[0].url,
+        artists: track.artists.map(artist => artist.name),
+        trackDuration: track.duration_ms,
+        trackName: track.name,
+        trackPreview: track.preview_url
+    }
+    console.log(info)
+    return info
+}
+
 export const setNavigation = (nav) => ({ type: SET_NAVIGATION, payload: nav });
 
 export function getUserProfile(token) {

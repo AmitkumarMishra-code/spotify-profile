@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import Profile from './Profile';
 
 import "./contentStyles.css"
+import TopTracks from './TopTracks';
 
 export default function Content() {
 
@@ -13,6 +14,9 @@ export default function Content() {
     switch(selected){
         case "profile":
             componentToRender = <Profile/>
+            break;
+        case 'tracks':
+            componentToRender = <TopTracks />
             break;
         default:
     }

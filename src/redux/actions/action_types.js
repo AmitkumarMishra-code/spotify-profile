@@ -83,14 +83,13 @@ export let getTopTracks = (filter) => {
 
 async function getTracksData(timeRange) {
     let response = await requestData("me/top/tracks?time_range=" + timeRange);
-    console.log(response)
     let tracksArray = response.items.map(track => getTrackInfo(track))
     while (response.next) {
         let index = response.next.indexOf('/me')
         let endpoint = response.next.substring(index + 1)
         response = await requestData(endpoint)
         let tempArray = response.items.map(track => getTrackInfo(track))
-        tracksArray.concat(tempArray)
+        tracksArray.push(...tempArray)
     }
     return tracksArray
 }
@@ -104,7 +103,6 @@ function getTrackInfo(track) {
         trackName: track.name,
         trackPreview: track.preview_url
     }
-    console.log(info)
     return info
 }
 

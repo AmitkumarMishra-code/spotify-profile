@@ -5,14 +5,12 @@ import Filter from "../../Common/Filter";
 export default function TopArtists() {
   const artists = useSelector((state) => state.artists.artistsArray);
 
-  const res = useSelector((state) => state.artists.res);
-
   return (
     <div className="top-artists">
       <Filter heading="Top Artists" />
       <div className="artists-images">
         {artists.map(({ images }) => (
-          <img style={imageStyles} src={images[0].url}></img>
+          <img alt="" style={imageStyles} src={images[0]?.url}></img>
         ))}
       </div>
     </div>

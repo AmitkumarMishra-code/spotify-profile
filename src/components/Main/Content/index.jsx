@@ -16,6 +16,7 @@ export default function Content() {
       break;
     case "artists":
       componentToRender = <TopArtists />;
+      break;
     default:
   }
 

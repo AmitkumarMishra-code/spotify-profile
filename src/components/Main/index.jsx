@@ -14,7 +14,7 @@ export default function Main() {
   useEffect(() => {
     dispatch(getTopArtists());
     dispatch(getUserProfile());
-  }, []);
+  }, [dispatch]);
   return (
     <div className="main">
       <SideBar />

@@ -9,6 +9,7 @@ import {
   SET_TRACKS_LONG_TERM,
   SET_TRACKS_MEDIUM_TERM,
   SET_TRACKS_SHORT_TERM,
+  SET_TOP_ARTISTS,
   SET_USER,
 } from "./actions";
 
@@ -57,6 +58,29 @@ export let setUser = (user) => ({
 export let refreshToken = () => ({
   type: REFRESH_TOKEN,
 });
+
+
+export let getTopArtists = () => {
+  return async function (dispatch, getState) {
+    let artistsArray = await getArtistData("long_term");
+    dispatch({ type: SET_TOP_ARTISTS, payload: { artistsArray } });
+  };
+};
+
+async function getArtistData(timeRange) {
+  let res = await requestData("me/top/artists?time_range=" + timeRange);
+
+  let artistsArray = [];
+
+  for (let i = 0; i < res.items.length; i++) {
+    let id = res.items[i].id;
+    const artist = await requestData("artists/" + id);
+    artistsArray.push(artist);
+  }
+
+  return artistsArray;
+}
+
 
 export let setTracksFilter = (filter) => ({
   type: SET_TRACKS_FILTER,
@@ -138,7 +162,6 @@ async function requestData(url) {
   let response = null;
   try {
     response = await axios.get(`https://api.spotify.com/v1/${url}`, headers);
-    console.log(response.status);
     return response.data;
   } catch (err) {
     console.log(url);

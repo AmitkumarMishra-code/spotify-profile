@@ -1,6 +1,11 @@
 
+
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import {
+  getTopArtists,
+  getUserProfile,
+} from "../../redux/actions/action_types";
 // eslint-disable-next-line
 import { getToken } from "../../redux/actions/action_types";
 
@@ -10,12 +15,11 @@ import SideBar from "./SideBar";
 import "./styles.css";
 
 export default function Main() {
-
-  // eslint-disable-next-line
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(getToken());
-  }, []);
+    dispatch(getTopArtists());
+    dispatch(getUserProfile());
+  }, [dispatch]);
 
   return (
     <div className="main">

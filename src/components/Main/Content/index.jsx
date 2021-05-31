@@ -2,7 +2,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Profile from "./Profile";
 
-import "./contentStyles.css";
+
+import "./contentStyles.css"
+import TopTracks from './TopTracks';
+import RecentlyPlayed from './RecentlyPlayed';
 import TopArtists from "./TopArtists";
 
 export default function Content() {
@@ -10,15 +13,26 @@ export default function Content() {
 
   let componentToRender = <></>;
 
-  switch (selected) {
-    case "profile":
-      componentToRender = <Profile />;
-      break;
-    case "artists":
-      componentToRender = <TopArtists />;
-      break;
-    default:
-  }
+    switch(selected){
+        case "profile":
+            componentToRender = <Profile/>
+            break;
+        case 'tracks':
+            componentToRender = <TopTracks />
+            break;
+        case 'recent':
+            componentToRender = <RecentlyPlayed />
+            break
+        case "artists":
+            componentToRender = <TopArtists />;
+            break;
+        default:
+            break;
+    }
 
-  return <div className="content">{componentToRender}</div>;
+    return (
+        <div className="content">
+            {componentToRender}
+        </div>
+    )
 }

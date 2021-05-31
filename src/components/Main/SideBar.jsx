@@ -44,7 +44,9 @@ export default function SideBar() {
           onClick={() => dispatch(setNavigation("tracks"))}
         >
           <div className="wrapper" style = {{transform:current === 'tracks' && 'scale(1.2)'}}>
+
             <Tracks fill = {current === 'tracks' ? '#ffffff':'#9b9a9d'}/>
+
             <p>Tracks</p>
           </div>
         </div>
@@ -65,6 +67,7 @@ export default function SideBar() {
         >
           <div className="wrapper" style = {{transform:current === 'playlists' && 'scale(1.2)'}}>
             <Playlist fill = {current === 'playlists' ? '#ffffff':'#9b9a9d'}/>
+
             <p>Playlists</p>
           </div>
         </div>

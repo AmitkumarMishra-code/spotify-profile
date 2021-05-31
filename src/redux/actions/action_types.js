@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import { REFRESH_TOKEN, SET_NAVIGATION, SET_RECENTLY_PLAYED, SET_TOKEN, SET_TRACKS_FILTER, SET_TRACKS_LONG_TERM, SET_TRACKS_MEDIUM_TERM, SET_TRACKS_SHORT_TERM, SET_USER } from "./actions";
 
 const querystring = require("querystring");
@@ -16,6 +17,7 @@ export const setToken = () => {
     return { type: SET_TOKEN, payload: token };
 };
 
+
 export function getToken() {
     return async(dispatch) => {
         let code = params.get("code");
@@ -26,11 +28,6 @@ export function getToken() {
         };
 
         data = querystring.stringify(data);
-        // eslint-disable-next-line
-        let headers = {
-            Authorization: "Basic NTljNjllNzY2NTliNGEyNDk4YzlhZGMxNmIyYWE4MWQ6ZmI4OWM4YjIwZTRhNDhjMDgxZTAyMDhmZmFmNWZhZTk=",
-        };
-
         let res = await axios({
             method: "post",
             url: "https://accounts.spotify.com/api/token",
@@ -39,10 +36,9 @@ export function getToken() {
                 Authorization: "Basic NTljNjllNzY2NTliNGEyNDk4YzlhZGMxNmIyYWE4MWQ6ZmI4OWM4YjIwZTRhNDhjMDgxZTAyMDhmZmFmNWZhZTk=",
             },
         });
-
-        console.log(res.data, "response");
-    };
+    }
 }
+
 
 export let setUser = (user) => ({
     type: SET_USER,
@@ -81,6 +77,7 @@ export let getTopTracks = (filter) => {
     };
 };
 
+
 async function getTracksData(timeRange) {
     let response = await requestData("me/top/tracks?time_range=" + timeRange);
     let tracksArray = response.items.map(track => getTrackInfo(track))
@@ -93,6 +90,7 @@ async function getTracksData(timeRange) {
     }
     return tracksArray
 }
+
 
 function getTrackInfo(track) {
     let info = {

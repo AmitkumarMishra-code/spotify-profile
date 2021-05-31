@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux'
 import Profile from './Profile';
 
 import "./contentStyles.css"
+import TopTracks from './TopTracks';
+import RecentlyPlayed from './RecentlyPlayed';
 
 export default function Content() {
 
@@ -14,6 +16,12 @@ export default function Content() {
         case "profile":
             componentToRender = <Profile/>
             break;
+        case 'tracks':
+            componentToRender = <TopTracks />
+            break;
+        case 'recent':
+            componentToRender = <RecentlyPlayed />
+            // eslint-disable-next-line
         default:
     }
 

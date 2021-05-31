@@ -21,6 +21,7 @@ export default function Content() {
             break;
         case 'recent':
             componentToRender = <RecentlyPlayed />
+            // eslint-disable-next-line
         default:
     }
 

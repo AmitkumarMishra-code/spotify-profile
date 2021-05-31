@@ -18,10 +18,12 @@ export default function Track({ image, trackName, albumName, runtime, artists, p
 
     useEffect(() => {
         playing ? audio.play() : audio.pause()
+        // eslint-disable-next-line
     }, [playing])
 
     useEffect(() => {
         audio.addEventListener('ended', () => setPlaying(false))
+        // eslint-disable-next-line
     }, [])
 
     return (

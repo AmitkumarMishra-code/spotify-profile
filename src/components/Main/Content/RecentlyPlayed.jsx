@@ -8,6 +8,7 @@ export default function RecentlyPlayed() {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getRecentlyPlayed())
+        // eslint-disable-next-line
     }, [])
     return (
         <div className="recently-played">

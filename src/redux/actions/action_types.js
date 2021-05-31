@@ -26,7 +26,7 @@ export function getToken() {
         };
 
         data = querystring.stringify(data);
-
+        // eslint-disable-next-line
         let headers = {
             Authorization: "Basic NTljNjllNzY2NTliNGEyNDk4YzlhZGMxNmIyYWE4MWQ6ZmI4OWM4YjIwZTRhNDhjMDgxZTAyMDhmZmFmNWZhZTk=",
         };

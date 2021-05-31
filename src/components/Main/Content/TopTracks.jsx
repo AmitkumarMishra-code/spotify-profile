@@ -10,6 +10,7 @@ export default function TopTracks() {
 
     useEffect(() => {
         dispatch(getTopTracks('long_term'))
+        // eslint-disable-next-line
     },[])
 
     let visibleTracks = () => {

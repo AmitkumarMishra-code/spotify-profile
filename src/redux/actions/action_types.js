@@ -9,8 +9,11 @@ import {
   SET_TRACKS_LONG_TERM,
   SET_TRACKS_MEDIUM_TERM,
   SET_TRACKS_SHORT_TERM,
-  SET_TOP_ARTISTS,
+  SET_TOP_ARTISTS_LONGTERM,
   SET_USER,
+  SET_TOP_ARTISTS_FILTER,
+  SET_TOP_ARTISTS_MEDIUMTERM,
+  SET_TOP_ARTISTS_SHORTTERM,
 } from "./actions";
 
 // const querystring = require("querystring");
@@ -59,17 +62,35 @@ export let refreshToken = () => ({
   type: REFRESH_TOKEN,
 });
 
-
-export let getTopArtists = () => {
+export let getTopArtists = (term) => {
   return async function (dispatch, getState) {
-    let artistsArray = await getArtistData("long_term");
-    dispatch({ type: SET_TOP_ARTISTS, payload: { artistsArray } });
+    console.log(term);
+    let artistsArray = await getArtistData(term);
+    switch (term) {
+      case "long_term":
+        dispatch({ type: SET_TOP_ARTISTS_LONGTERM, payload: artistsArray });
+        break;
+      case "medium_term":
+        dispatch({ type: SET_TOP_ARTISTS_MEDIUMTERM, payload: artistsArray });
+        break;
+      case "short_term":
+        dispatch({ type: SET_TOP_ARTISTS_SHORTTERM, payload: artistsArray });
+        break;
+      default:
+    }
   };
 };
 
-async function getArtistData(timeRange) {
-  let res = await requestData("me/top/artists?time_range=" + timeRange);
+export function setArtistFilter(filter) {
+  return async (dispatch, getState) => {
+    console.log("changed artists");
+    getTopArtists(filter);
+    dispatch({ type: SET_TOP_ARTISTS_FILTER, payload: filter });
+  };
+}
 
+async function getArtistData(timeRange = "long_term") {
+  let res = await requestData("me/top/artists?time_range=" + timeRange);
   let artistsArray = [];
 
   for (let i = 0; i < res.items.length; i++) {
@@ -80,7 +101,6 @@ async function getArtistData(timeRange) {
 
   return artistsArray;
 }
-
 
 export let setTracksFilter = (filter) => ({
   type: SET_TRACKS_FILTER,

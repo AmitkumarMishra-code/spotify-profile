@@ -21,12 +21,13 @@ export default function LogIn() {
 
   return (
     <div className="root">
+      <h2>Spotify Profile</h2>
       <a
         href={`https://accounts.spotify.com/authorize?client_id=59c69e76659b4a2498c9adc16b2aa81d&scope=${scopes.join(
           "%20"
         )}&redirect_uri=${redirect}&response_type=token`}
       >
-        <Button content="Sign in" color="white" background="green" />
+        <Button content="Log in to Spotify" color="white" background="green" />
       </a>
     </div>
   );

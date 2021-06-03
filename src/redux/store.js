@@ -7,16 +7,18 @@ import userReducer from "./reducers/userReducer";
 import tracksReducer from "./reducers/tracksReducer";
 import recentlyPlayedReducer from "./reducers/recentlyPlayedreducer";
 import playlistReducer from "./reducers/playlistReducer";
+import playerReducer from "./reducers/playerReducer";
 
 //artistsReducer
 
 const rootReducer = combineReducers({
-  token: tokenReducer,
-  artists: artistsReducer,
-  navigation: navigationReducer,
-  user: userReducer,
-  tracks: tracksReducer,
-  recentlyPlayed: recentlyPlayedReducer,
-  playlists: playlistReducer,
+    token: tokenReducer,
+    artists: artistsReducer,
+    navigation: navigationReducer,
+    user: userReducer,
+    tracks: tracksReducer,
+    recentlyPlayed: recentlyPlayedReducer,
+    playlists: playlistReducer,
+    playerStatus: playerReducer
 });
 export const store = createStore(rootReducer, applyMiddleware(thunk));

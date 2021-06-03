@@ -1,25 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Iceland&display=swap');
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: "Chakra Petch", sans-serif;
+    font-family: "Iceland", sans-serif;
+    overflow-x: hidden;
 }
 
 h1 {
-  font-size: 3em;
-  font-weight: 700;
+    font-size: 3em;
+    font-weight: 700;
 }
 
 h2 {
-  font-size: 2em;
-  font-weight: 600;
+    font-size: 2em;
+    font-weight: 600;
 }
 
 h3 {
-  font-size: 1em;
-  font-weight: 500;
+    font-size: 1em;
+    font-weight: 500;
 }

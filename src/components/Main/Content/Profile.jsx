@@ -109,7 +109,7 @@ export default function Profile() {
       <div className="w-full flex mt-10">
         <div className="w-1/2 flex flex-col gap-5 px-10">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl">Top artists of all time</h2>
+            <h2 className="text-2xl">Top Artists Of All Time</h2>
             <button
               className="border border-white rounded-full pt-2 pb-2 pl-4 pr-4  "
               onClick={() => dispatch(setNavigation("artists"))}
@@ -133,7 +133,7 @@ export default function Profile() {
         </div>
         <div className="w-1/2 flex flex-col gap-5 px-10">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl">Top artists of all time</h2>
+            <h2 className="text-2xl">Top Tracks Of All Time</h2>
             <button
               className="border border-white rounded-full pt-2 pb-2 pl-4 pr-4  "
               onClick={() => dispatch(setNavigation("tracks"))}

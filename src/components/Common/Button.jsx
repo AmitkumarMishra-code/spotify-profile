@@ -9,6 +9,7 @@ export default function Button({ content, color, background, border }) {
     fontSize: "1rem",
     cursor: "pointer",
     border: border ? border : "none",
-  };
+    outline: 'none'
+    };
   return <button style={buttonStyle}>{content}</button>;
 }

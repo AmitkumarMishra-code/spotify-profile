@@ -9,8 +9,12 @@ import {
   SET_TRACKS_LONG_TERM,
   SET_TRACKS_MEDIUM_TERM,
   SET_TRACKS_SHORT_TERM,
-  SET_TOP_ARTISTS,
+  SET_TOP_ARTISTS_LONGTERM,
   SET_USER,
+  SET_TOP_ARTISTS_FILTER,
+  SET_TOP_ARTISTS_MEDIUMTERM,
+  SET_TOP_ARTISTS_SHORTTERM,
+  SET_PLAYLISTS,
 } from "./actions";
 
 // const querystring = require("querystring");
@@ -59,17 +63,45 @@ export let refreshToken = () => ({
   type: REFRESH_TOKEN,
 });
 
+export function getPlaylists() {
+  return async (dispatch) => {
+    let playlists = await requestData("me/playlists");
+    playlists = playlists.items.map((val) => ({
+      image: val.images[0].url,
+      playlistName: val.name,
+      total: val.tracks.total,
+    }));
 
-export let getTopArtists = () => {
-  return async function (dispatch, getState) {
-    let artistsArray = await getArtistData("long_term");
-    dispatch({ type: SET_TOP_ARTISTS, payload: { artistsArray } });
+    dispatch({ type: SET_PLAYLISTS, payload: playlists });
   };
-};
+}
 
-async function getArtistData(timeRange) {
+export function setArtistFilter(filter) {
+  return async (dispatch) => {
+    console.log("changed artists");
+
+    let artistsArray = await getArtistData(filter);
+    switch (filter) {
+      case "long_term":
+        dispatch({ type: SET_TOP_ARTISTS_LONGTERM, payload: artistsArray });
+        break;
+      case "medium_term":
+        dispatch({ type: SET_TOP_ARTISTS_MEDIUMTERM, payload: artistsArray });
+        break;
+      case "short_term":
+        dispatch({ type: SET_TOP_ARTISTS_SHORTTERM, payload: artistsArray });
+        break;
+      default:
+        break;
+    }
+
+    dispatch({ type: SET_TOP_ARTISTS_FILTER, payload: filter });
+  };
+}
+
+async function getArtistData(timeRange = "long_term") {
+  console.log(timeRange);
   let res = await requestData("me/top/artists?time_range=" + timeRange);
-
   let artistsArray = [];
 
   for (let i = 0; i < res.items.length; i++) {
@@ -80,7 +112,6 @@ async function getArtistData(timeRange) {
 
   return artistsArray;
 }
-
 
 export let setTracksFilter = (filter) => ({
   type: SET_TRACKS_FILTER,

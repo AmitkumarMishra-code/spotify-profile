@@ -7,7 +7,7 @@
   color: white;
 }
 
-.profile img {
+.profile .avatar {
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
@@ -22,7 +22,7 @@
 
 .details .followers,
 .details .following,
-.details .playlists {
+.details .profile-playlists {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,7 +34,7 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  /* width: fit-content; */
+  width: 70%;
 }
 
 .artists-images {
@@ -42,4 +42,36 @@
   grid-template-columns: repeat(auto-fill, minmax(160px, 160px));
   gap: 1rem;
   justify-content: space-evenly;
+}
+
+.playlists-container {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  gap: 1rem;
+  width: 70%;
+}
+
+.playlists-container p {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+}
+
+.playlists > h2 {
+  text-align: left;
+  width: 70%;
+}
+
+.playlists {
+  padding: 2rem 5rem;
+  gap: 4rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.profile-tracks .track {
+  width: 95%;
 }

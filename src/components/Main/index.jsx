@@ -1,11 +1,6 @@
-
-
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {
-  getTopArtists,
-  getUserProfile,
-} from "../../redux/actions/action_types";
+import { getUserProfile } from "../../redux/actions/action_types";
 // eslint-disable-next-line
 import { getToken } from "../../redux/actions/action_types";
 
@@ -17,7 +12,6 @@ import "./styles.css";
 export default function Main() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getTopArtists());
     dispatch(getUserProfile());
   }, [dispatch]);
 

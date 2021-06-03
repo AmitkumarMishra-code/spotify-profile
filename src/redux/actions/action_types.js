@@ -14,6 +14,7 @@ import {
   SET_TOP_ARTISTS_FILTER,
   SET_TOP_ARTISTS_MEDIUMTERM,
   SET_TOP_ARTISTS_SHORTTERM,
+  SET_PLAYLISTS,
 } from "./actions";
 
 // const querystring = require("querystring");
@@ -62,11 +63,25 @@ export let refreshToken = () => ({
   type: REFRESH_TOKEN,
 });
 
-export let getTopArtists = (term) => {
-  return async function (dispatch, getState) {
-    console.log(term);
-    let artistsArray = await getArtistData(term);
-    switch (term) {
+export function getPlaylists() {
+  return async (dispatch) => {
+    let playlists = await requestData("me/playlists");
+    playlists = playlists.items.map((val) => ({
+      image: val.images[0].url,
+      playlistName: val.name,
+      total: val.tracks.total,
+    }));
+
+    dispatch({ type: SET_PLAYLISTS, payload: playlists });
+  };
+}
+
+export function setArtistFilter(filter) {
+  return async (dispatch) => {
+    console.log("changed artists");
+
+    let artistsArray = await getArtistData(filter);
+    switch (filter) {
       case "long_term":
         dispatch({ type: SET_TOP_ARTISTS_LONGTERM, payload: artistsArray });
         break;
@@ -77,19 +92,15 @@ export let getTopArtists = (term) => {
         dispatch({ type: SET_TOP_ARTISTS_SHORTTERM, payload: artistsArray });
         break;
       default:
+        break;
     }
-  };
-};
 
-export function setArtistFilter(filter) {
-  return async (dispatch, getState) => {
-    console.log("changed artists");
-    getTopArtists(filter);
     dispatch({ type: SET_TOP_ARTISTS_FILTER, payload: filter });
   };
 }
 
 async function getArtistData(timeRange = "long_term") {
+  console.log(timeRange);
   let res = await requestData("me/top/artists?time_range=" + timeRange);
   let artistsArray = [];
 

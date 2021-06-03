@@ -9,7 +9,8 @@ export default function LogIn() {
     "user-follow-read",
     "user-read-private",
     "user-top-read",
-    "user-read-recently-played"
+    "user-read-recently-played",
+    "playlist-read-private",
   ];
 
   let redirect = "http:%2F%2Flocalhost:3000%2fmain";

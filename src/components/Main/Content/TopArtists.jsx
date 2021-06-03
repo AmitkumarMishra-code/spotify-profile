@@ -1,22 +1,10 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Filter from "../../Common/Filter";
-import {
-  getTopArtists,
-  setArtistFilter,
-} from "../../../redux/actions/action_types";
+import { setArtistFilter } from "../../../redux/actions/action_types";
 
 export default function TopArtists() {
   const filter = useSelector((state) => state.artists.filter);
   const artists = useSelector((state) => state.artists);
-
-  console.log(artists);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getTopArtists("long_term"));
-  }, [dispatch]);
 
   return (
     <div className="top-artists">

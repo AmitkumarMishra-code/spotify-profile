@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+// import axios from "axios";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getTopTracks,
@@ -7,7 +8,7 @@ import {
   setNavigation,
   setPlayerStatus,
 } from "../../../redux/actions/action_types";
-import Button from "../../Common/Button";
+// import Button from "../../Common/Button";
 import Track from "./Track";
 
 const url = "https://www.spotify.com/logout/";
@@ -19,32 +20,33 @@ export default function Profile() {
   const tracksLongTerm = useSelector((state) => state.tracks.tracks.long_term);
   let [audio, setAudio] = useState(null)
   let playing = useSelector(state => state.playerStatus)
+  let loginRef = useRef()
 
-    let handlePlay = (preview) => {
-        setAudio(new Audio(preview))
+  let handlePlay = (preview) => {
+    setAudio(new Audio(preview))
+  }
+
+  useEffect(() => {
+    if (audio) {
+      playing ? audio.play() : audio.pause()
     }
+    // eslint-disable-next-line
+  }, [playing])
 
-    useEffect(() => {
-        if (audio) {
-            playing ? audio.play() : audio.pause()
-        }
-        // eslint-disable-next-line
-    }, [playing])
+  useEffect(() => {
+    if (audio) {
+      audio.addEventListener('ended', () => {
+        dispatch(setPlayerStatus(false))
+        setAudio(null)
+      })
+    }
+    // eslint-disable-next-line
+  }, [audio])
 
-    useEffect(() => {
-        if (audio) {
-            audio.addEventListener('ended', () => {
-                dispatch(setPlayerStatus(false))
-                setAudio(null)
-            })
-        }
-        // eslint-disable-next-line
-    }, [audio])
-
-    useEffect(() => {
-        dispatch(getTopTracks('long_term'))
-        // eslint-disable-next-line
-    }, [])
+  useEffect(() => {
+    dispatch(getTopTracks('long_term'))
+    // eslint-disable-next-line
+  }, [])
 
   const dispatch = useDispatch();
 
@@ -63,7 +65,10 @@ export default function Profile() {
       "Spotify Logout",
       "width=700,height=500,top=40,left=40"
     );
-    setTimeout(() => spotifyLogoutWindow.close(), 0);
+    setTimeout(() => {
+      spotifyLogoutWindow.close()
+      loginRef.current.click()
+    }, 500);
   }
 
   return (
@@ -97,14 +102,17 @@ export default function Profile() {
           <p>{playlists.total}</p>
         </div>
       </div>
-      <a href="/" onClick={handleLogOut}>
-        <Button
-          content="LOGOUT"
-          background="transparent"
-          color="white"
-          border="2px solid white"
-        />
-      </a>
+      {/* <a href="/" onClick={handleLogOut}> */}
+      {/* <Button
+        content="LOGOUT"
+        background="transparent"
+        color="white"
+        border="2px solid white"
+        onClick={handleLogOut}
+      /> */}
+      <button className = 'logout' onClick={handleLogOut}>Logout</button>
+      <a href = '/' ref = {loginRef} style={{display:'none'}}>Home</a>
+      {/* </a> */}
 
       <div className="w-full flex mt-10">
         <div className="w-1/2 flex flex-col gap-5 px-10">

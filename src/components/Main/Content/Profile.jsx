@@ -119,7 +119,7 @@ export default function Profile() {
           <div className="flex items-center justify-between">
             <h2 className="text-2xl">Top Artists Of All Time</h2>
             <button
-              className="border border-white rounded-full pt-2 pb-2 pl-4 pr-4  outline-none"
+              className="border border-white rounded-full pt-2 pb-2 pl-4 pr-4 focus:outline-none"
               onClick={() => dispatch(setNavigation("artists"))}
             >
               See more
@@ -143,7 +143,7 @@ export default function Profile() {
           <div className="flex items-center justify-between">
             <h2 className="text-2xl">Top Tracks Of All Time</h2>
             <button
-              className="border border-white rounded-full pt-2 pb-2 pl-4 pr-4  outline-none"
+              className="border border-white rounded-full pt-2 pb-2 pl-4 pr-4 focus:outline-none"
               onClick={() => dispatch(setNavigation("tracks"))}
             >
               See more

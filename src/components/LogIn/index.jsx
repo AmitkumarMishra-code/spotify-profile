@@ -15,7 +15,7 @@ export default function LogIn() {
 
   let redirect = "http:%2F%2Flocalhost:3000%2fmain";
 
-  if (window.location.href === "https://spotify-starter.netlify.app/") {
+  if (window.location.href === "https://keen-lumiere-be6db9.netlify.app/") {
     redirect = "https:%2F%2Fkeen-lumiere-be6db9.netlify.app%2fmain";
   }
 
